@@ -11,7 +11,7 @@ router.use(cors({
 router.get('/api/auth/token', async function (req, res, next) {
     try {
         const publicToken = await getPublicToken();
-        res.header('Access-Control-Allow-Origin', 'http://localhost:8080');
+        res.header('Access-Control-Allow-Origin', '*');
         res.header('Access-Control-Allow-Methods', 'GET, OPTIONS');
         res.json(publicToken);
     } catch (err) {
