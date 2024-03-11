@@ -1,8 +1,17 @@
 const express = require('express');
 const formidable = require('express-formidable');
 const { listObjects, uploadObject, translateObject, getManifest, urnify } = require('../services/aps.js');
+const { getPublicToken } = require('../services/aps.js');
 
 let router = express.Router();
+
+router.get('/api/auth/token', async function (req, res, next) {
+    try {
+        res.json(await getPublicToken());
+    } catch (err) {
+        next(err);
+    }
+});
 
 router.get('/api/models', async function (req, res, next) {
     try {
